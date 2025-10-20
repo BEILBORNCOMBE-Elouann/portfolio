@@ -24,21 +24,8 @@ body {
   margin: 0 auto;
 }
 
-/* White horizontal line at the end of timeline sections */
-.tree::before{
-  content: '';
-  position: absolute;
-  width: calc(100% - 40px);
-  height: 6px;
-  background-color: white;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-
 /* The actual timeline (the vertical ruler) */
-.tree::after {
+.tree::after{
   content: '';
   position: absolute;
   width: 6px;
@@ -56,6 +43,7 @@ body {
   background-color: inherit;
   width: 50%;
   color: black;
+  transition: transform 0.25s ease;
 }
 
 /* The circles on the timeline */
@@ -122,6 +110,34 @@ body {
   position: relative;
   border-radius: 6px;
   color: black;
+}
+
+/* Add smooth transition and box-shadow on hover for tree containers */
+.tree .container {
+  transition: transform 0.25s ease;
+}
+.tree .container .content {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  will-change: box-shadow, transform;
+}
+.tree .container:hover .content,
+.tree .container:focus-within .content {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.Competence article {
+  background-color: #333;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.Competence article:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
